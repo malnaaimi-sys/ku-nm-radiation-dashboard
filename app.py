@@ -48,7 +48,7 @@ with st.sidebar:
         st.session_state["authenticated"] = False
         st.rerun()
 
-st.set_page_config(page_title="KU NM Radiation Safety Dashboard", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Radiation Safety Dashboard", page_icon="🛡️", layout="wide")
 
 # ----------------------------
 # Simple helpers
@@ -124,10 +124,7 @@ LICENSE_VALID_UNTIL = "05 June 2027"
 RESPONSIBLE_PERSON = "Dr. Mohammad Saker"
 
 # Headline
-st.title("🛡️ Nuclear Medicine Dep Radiation Safety Dashboard")
-st.markdown(
-   "### **KU NM meets international expectations for safe radioactive research operations.**"
-)
+st.title("🛡️ Radiation Safety Dashboard")
 
 # Executive strip
 a, b, c, d = st.columns(4)
@@ -347,6 +344,7 @@ with st.expander("Optional: preview receipt log (first 30 rows)"):
         st.info("Upload receipt log CSV/XLSX to preview here.")
     else:
         st.dataframe(df_receipt.head(30), use_container_width=True)
+
 
 
 
