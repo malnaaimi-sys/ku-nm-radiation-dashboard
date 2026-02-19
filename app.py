@@ -4,6 +4,49 @@ import numpy as np
 import datetime as dt
 import matplotlib.pyplot as plt
 from PIL import Image
+import streamlit as st
+import hmac
+
+# ----------------------------
+# LOGIN / PASSWORD GATE
+# ----------------------------
+def check_password():
+    """Returns True if the user had the correct username/password."""
+    # Secrets are preferred (Streamlit Cloud or local .streamlit/secrets.toml)
+    users = st.secrets.get("users", {})  # dict: {"username":"password"}
+
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+
+    if st.session_state["authenticated"]:
+        return True
+
+    st.title("🔐 KU NM Radiation Safety Dashboard")
+    st.subheader("Login")
+
+    with st.form("login_form", clear_on_submit=False):
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        submitted = st.form_submit_button("Sign in")
+
+    if submitted:
+        # Compare securely
+        if username in users and hmac.compare_digest(password, str(users[username])):
+            st.session_state["authenticated"] = True
+            st.success("✅ Login successful")
+            st.rerun()
+        else:
+            st.error("❌ Incorrect username or password")
+            st.stop()
+
+    st.info("Authorized users only.")
+    st.stop()
+
+check_password()
+with st.sidebar:
+    if st.button("🚪 Logout"):
+        st.session_state["authenticated"] = False
+        st.rerun()
 
 st.set_page_config(page_title="KU NM Radiation Safety Dashboard", page_icon="🛡️", layout="wide")
 
@@ -304,3 +347,4 @@ with st.expander("Optional: preview receipt log (first 30 rows)"):
         st.info("Upload receipt log CSV/XLSX to preview here.")
     else:
         st.dataframe(df_receipt.head(30), use_container_width=True)
+
