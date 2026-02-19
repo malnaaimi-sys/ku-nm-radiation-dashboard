@@ -118,7 +118,7 @@ def bar_by_radionuclide(df, title):
 # ----------------------------
 DOC_NO = "HSC-NM-RSM-001"
 VERSION = "2026 – Rev. 1"
-REG_AUTH = "RPD LICENSE\n NUM. 1/2007"
+REG_AUTH = "LICENSE NUM.1/2007"
 RPD_LICENSE_NO = "1/2007"
 LICENSE_VALID_UNTIL = "05 June 2027"
 RESPONSIBLE_PERSON = "Dr. Mohammad Saker"
@@ -347,4 +347,5 @@ with st.expander("Optional: preview receipt log (first 30 rows)"):
         st.info("Upload receipt log CSV/XLSX to preview here.")
     else:
         st.dataframe(df_receipt.head(30), use_container_width=True)
+
 
