@@ -128,9 +128,9 @@ st.title("🛡️ KU Nuclear Medicine Dep \n Radiation Safety Competency Dashboa
 import streamlit as st
 st.markdown("<h3>🛡️ <b>KU Nuclear Medicine Dep</b> <br> Radiation Safety Competency Dashboard</h3>", unsafe_allow_html=True)
 
-st.markdown(
-    "### **KU NM meets international expectations for safe radioactive research operations.**"
-)
+#st.markdown(
+ #   "### **KU NM meets international expectations for safe radioactive research operations.**"
+#)
 
 # Executive strip
 a, b, c, d = st.columns(4)
@@ -350,6 +350,7 @@ with st.expander("Optional: preview receipt log (first 30 rows)"):
         st.info("Upload receipt log CSV/XLSX to preview here.")
     else:
         st.dataframe(df_receipt.head(30), use_container_width=True)
+
 
 
 
